@@ -1,22 +1,21 @@
-find_package(fmt CONFIG)
-find_package(spdlog CONFIG)
-find_package(docopt CONFIG)
+add_library(jam_core INTERFACE)
+target_link_libraries(jam_core
+  INTERFACE
+    project_options
+    project_warnings)
+target_include_directories(jam_core 
+  INTERFACE
+    "${CMAKE_SOURCE_DIR}/include")
 
-# Generic test that uses conan libs
-add_executable(intro main.cpp)
-target_link_libraries(
-  intro
-  PRIVATE project_options
-          project_warnings
-          docopt::docopt
-          fmt::fmt
-          spdlog::spdlog)
+add_library(jam_physics INTERFACE)
+target_link_libraries(jam_physics
+  INTERFACE
+    jam_core)
 
-target_link_system_libraries(
-  intro
+add_executable(round)
+target_sources(round
   PRIVATE
-  ftxui::screen
-  ftxui::dom
-  ftxui::component)
-
-target_include_directories(intro PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
+    main.cpp)
+target_link_libraries(round
+  PRIVATE
+    jam_physics)
