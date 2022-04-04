@@ -159,3 +159,8 @@ set(CPACK_PACKAGE_FILE_NAME
 )
 
 include(CPack)
+
+# Update the soft link to compile_commands.json so that clangd will be able to pick up the changes.
+execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
+                ${CMAKE_BINARY_DIR}/compile_commands.json
+                ${CMAKE_SOURCE_DIR}/compile_commands.json)
