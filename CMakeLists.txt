@@ -145,11 +145,11 @@ if(MSVC)
 endif()
 
 # set the startup project for the "play" button in MSVC
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT intro)
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT round)
 
 # Add other targets that you want installed here, be default we just package the one executable
 # we know we want to ship
-package_project(TARGETS intro)
+package_project(TARGETS round)
 
 # Experience shows that explicit package naming can help make it easier to sort
 # out potential ABI related issues before they start, while helping you
@@ -159,3 +159,8 @@ set(CPACK_PACKAGE_FILE_NAME
 )
 
 include(CPack)
+
+# Update the soft link to compile_commands.json so that clangd will be able to pick up the changes.
+execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
+                ${CMAKE_BINARY_DIR}/compile_commands.json
+                ${CMAKE_SOURCE_DIR}/compile_commands.json)
