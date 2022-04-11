@@ -44,8 +44,6 @@ struct [[nodiscard]] particle final
   // Returns where the particle is located in space. The returned value is in meters.
   constexpr point position() const noexcept { return position_; }
 
-  constexpr mass mass() const noexcept { return mass_; }
-
   constexpr void move_to(point const position) noexcept { position_ = position; }
 
   constexpr void move_to(scalar const x, scalar const y) noexcept { move_to(point{ x, y }); }
