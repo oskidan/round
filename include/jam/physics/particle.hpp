@@ -38,6 +38,9 @@ struct [[nodiscard]] particle final
     acceleration_ = new_acceleration;
   }
 
+  constexpr auto x() const noexcept { return position_.x(); }
+  constexpr auto y() const noexcept { return position_.y(); }
+
   // Returns where the particle is located in space. The returned value is in meters.
   constexpr point position() const noexcept { return position_; }
 
