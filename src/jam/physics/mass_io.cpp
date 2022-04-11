@@ -4,9 +4,6 @@
 
 namespace jam {
 
-std::ostream &operator<<(std::ostream &lhs, mass const mass) noexcept
-{
-  return lhs << static_cast<float>(mass) << "kg";
-}
+std::ostream &operator<<(std::ostream &lhs, mass const mass) { return lhs << static_cast<float>(mass) << "kg"; }
 
 }// namespace jam
